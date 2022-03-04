@@ -1,0 +1,29 @@
+.container {
+    max-width: 1140px;
+    text-align: center;
+    margin: auto;
+}
+
+.levels {
+    margin-bottom: 25px;
+}
+
+.message {
+    height: 40px;
+}
+
+#gameResult,
+#goodBye {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 8px;
+    visibility: hidden;
+}
+
+.continueBtnsContainer {
+    width: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de devinette</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="nameIsAvailable();">
+    <div class="container">
+        <div id="game">
+            <div class="levels">
+                <h4>Niveaux</h4>
+                <input type="radio" name="levels" id="easy" value="easy" onchange="easyLevel();">
+                <label for="easy">Facile</label>
+                <input type="radio" name="levels" id="medium" value="medium" onchange="mediumLevel();">
+                <label for="medium">Moyen</label>
+                <input type="radio" name="levels" id="difficult" value="difficult" onchange="difficultLevel();">
+                <label for="difficult">Difficile</label>
+            </div>
+            <div class="message">
+                <p id="message">Selectionnez d'abord un niveau avant de commencer!</p>
+            </div>
+            <form>
+                <input type="number" id="givenNumber" placeholder="nombre" onfocus="isAnyLevelChecked();">
+                <button type="button" onclick="verfyGivenNumber();clearGivenNumber();">Valider</button>
+            </form>
+        </div>
+        <div id="gameResult">
+            <p id="gameResultMessage"></p>
+            <p>Voulez vous continuer?</p>
+            <div class="continueBtnsContainer">
+                <button onclick="playAgain();">Oui</button>
+                <button onclick="goodBye();">Non</button>
+            </div>
+        </div>
+        <div id="goodBye">
+            <p>Au revoir!</p>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
