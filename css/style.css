@@ -36,7 +36,7 @@ input {
 .gamer {
     display: flex;
     justify-content: space-between;
-    width: 300px;
+    width: 360px;
     margin: auto;
 }
 
