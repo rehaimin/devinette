@@ -37,10 +37,9 @@ input {
 }
 
 .container {
-    box-sizing: border-box;
     max-width: 600px;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
     margin: 50px auto;
     box-shadow: 0 0 5px rgba(140, 140, 140, 0.25);
 }
