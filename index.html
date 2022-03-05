@@ -9,11 +9,22 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="nameIsAvailable();">
+<body onload="askForNameIfNotAvalable();checkGamerScore();">
     <div class="container">
+        <div id="nameContainer">
+            <p>Entrez votre nom pour jouer !</p>
+            <form>
+                <input type="text" id="name" placeholder="Votre Nom">
+                <button type="button" onclick="verfyGivenName();">Valider</button>
+            </form>
+        </div>
         <div id="game">
+            <div class="gamer">
+                <div><span>Joueur : </span><span id="gamerName"></span></div>
+                <div><span>Score : </span><span id="gamerScore"></span></div>
+            </div>
             <div class="levels">
-                <h4>Niveaux</h4>
+                <span>Niveaux :</span>
                 <input type="radio" name="levels" id="easy" value="easy" onchange="easyLevel();">
                 <label for="easy">Facile</label>
                 <input type="radio" name="levels" id="medium" value="medium" onchange="mediumLevel();">
@@ -21,9 +32,8 @@
                 <input type="radio" name="levels" id="difficult" value="difficult" onchange="difficultLevel();">
                 <label for="difficult">Difficile</label>
             </div>
-            <div class="message">
-                <p id="message">Selectionnez d'abord un niveau avant de commencer!</p>
-            </div>
+            <p id="message">Selectionnez un niveau avant de commencer!</p>
+            <p id="trialsMessage"></p>
             <form>
                 <input type="number" id="givenNumber" placeholder="nombre" onfocus="isAnyLevelChecked();">
                 <button type="button" onclick="verfyGivenNumber();clearGivenNumber();">Valider</button>
@@ -31,14 +41,15 @@
         </div>
         <div id="gameResult">
             <p id="gameResultMessage"></p>
-            <p>Voulez vous continuer?</p>
+            <p id="playAgain"></p>
             <div class="continueBtnsContainer">
                 <button onclick="playAgain();">Oui</button>
                 <button onclick="goodBye();">Non</button>
             </div>
         </div>
         <div id="goodBye">
-            <p>Au revoir!</p>
+            <p>Au revoir <span id="goodByeName"></span></p>
+            <p>Votre score est : <span id="goodByeScore"></span></p>
         </div>
     </div>
 

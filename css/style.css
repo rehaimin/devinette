@@ -1,29 +1,67 @@
+@font-face {
+    font-family: 'digital-7';
+    src: url('../fonts/digital-7.ttf');
+}
+
+body {
+    background-color: black;
+}
+
+button {
+    background-color: gray;
+}
+
+input {
+    color: black;
+}
+
+#givenNumber {
+    width: 80px;
+    text-align: center;
+}
+
+* {
+    font-family: 'digital-7';
+    font-size: 1.05em;
+    letter-spacing: 0.07em;
+    color: #CCFF00;
+}
+
 .container {
     max-width: 1140px;
     text-align: center;
+    margin: 50px auto;
+}
+
+.gamer {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
     margin: auto;
 }
 
-.levels {
-    margin-bottom: 25px;
+.levels,
+#message,
+#name {
+    margin: 25px 0;
 }
 
-.message {
-    height: 40px;
+.levels span {
+    font-weight: 700;
+    font-size: 1.1em;
 }
 
 #gameResult,
-#goodBye {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 8px;
-    visibility: hidden;
+#goodBye,
+#game,
+#nameContainer {
+    display: none;
 }
 
 .continueBtnsContainer {
-    width: 200px;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
+    text-align: center;
+}
+
+.continueBtnsContainer button {
+    margin: 20px;
 }

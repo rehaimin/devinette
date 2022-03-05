@@ -1,69 +1,92 @@
+let gamerName;
+
 function nameIsAvailable() {
-    let tester = localStorage.getItem('gamerName');
-    if (tester != null) {
+    gamerName = localStorage.getItem('gamerName');
+    if (gamerName != null) {
         return true;
     }
 }
 
 function askForNameIfNotAvalable() {
     if (!nameIsAvailable()) {
-        prompt("Entrer Votre Nom");
+        document.getElementById("nameContainer").style.display = "block";
+    } else {
+        document.getElementById("gamerName").innerText = gamerName;
+        document.getElementById("game").style.display = "block";
     }
 
 }
 
-let levelChoice;
+function verfyGivenName() {
+    if (document.getElementById("name").value != "") {
+        localStorage.setItem('gamerName', document.getElementById("name").value);
+        document.getElementById("nameContainer").style.display = "none";
+        document.getElementById("gamerName").innerText = localStorage.getItem('gamerName');
+        document.getElementById("game").style.display = "block";
+    }
+}
+
+function checkGamerScore() {
+    if (localStorage.getItem('gamerScore') == null) {
+        localStorage.setItem('gamerScore', 0);
+        document.getElementById("gamerScore").innerText = 0;
+    } else {
+        document.getElementById("gamerScore").innerText = localStorage.getItem('gamerScore');
+    }
+}
+
 let randomNumber;
-let maxTrials;
 let leftTrials;
+let levelPoints;
 
 function easyLevel() {
-    levelChoice = document.getElementById("easy").value;
-    document.getElementById("message").style.color = "black";
+    document.getElementById("message").style.color = "#CCFF00";
     document.getElementById("message").innerText = "Entrez un nombre entier entre 1 et 10";
+    document.getElementById("trialsMessage").innerText = "Vous avez 3 Essais pour deviner";
     randomNumber = Math.ceil(Math.random() * 10);
-    maxTrials = 3;
-    leftTrials = maxTrials;
-    // console.log(randomNumber);
+    leftTrials = 3;
+    levelPoints = 1;
 }
 
 function mediumLevel() {
-    levelChoice = document.getElementById("medium").value;
-    document.getElementById("message").style.color = "black";
+    document.getElementById("message").style.color = "#CCFF00";
     document.getElementById("message").innerText = "Entrez un nombre entier entre 10 et 100";
+    document.getElementById("trialsMessage").innerText = "Vous avez 5 Essais pour deviner";
     randomNumber = Math.ceil(Math.random() * 100);
     if (randomNumber < 10) {
         randomNumber = randomNumber + 10;
     }
-    maxTrials = 5;
+    leftTrials = 5;
+    levelPoints = 3;
     console.log(randomNumber);
 }
 
 function difficultLevel() {
-    levelChoice = document.getElementById("difficult").value;
-    document.getElementById("message").style.color = "black";
+    document.getElementById("message").style.color = "#CCFF00";
     document.getElementById("message").innerText = "Entrez un nombre entier entre 100 et 1000";
+    document.getElementById("trialsMessage").innerText = "Vous avez 10 Essais pour deviner";
     randomNumber = Math.ceil(Math.random() * 1000);
     if (randomNumber < 100) {
         randomNumber = randomNumber + 100;
     }
-    maxTrials = 10;
+    leftTrials = 10;
+    levelPoints = 5;
     console.log(randomNumber);
 }
 
 let checkedRadio;
 
-function isAnyLevelChecked() {
+function isAnyLevelChecked(levelChecked) {
     for (let i = 0; i < 3; i++) {
         let radioButton = document.getElementsByName("levels")[i];
         if (radioButton.checked) {
-            checkedRadio = radioButton.value;
+            levelChecked = true;
         }
     }
+
     console.log(randomNumber);
-    if (checkedRadio == undefined) {
+    if (levelChecked != true) {
         document.getElementById("message").style.color = "red";
-        document.getElementById("message").innerText = "Selectionnez d'abord un niveau avant de commencer!";
         document.getElementById("givenNumber").blur();
     }
 }
@@ -82,27 +105,27 @@ function disableRadioButtons() {
     }
 }
 
-function enableRadioButtons() {
-    for (let l = 0; l < 3; l++) {
-        document.getElementsByName("levels")[k].disabled = false;
-    }
-}
 
 function verfyGivenNumber() {
     let givenNumber = document.getElementById("givenNumber");
     if (givenNumber.value != "") {
         console.log(givenNumber.value, randomNumber);
         if (givenNumber.value == randomNumber) {
+            localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
             document.getElementById("gameResultMessage").style.color = "green";
             document.getElementById("gameResultMessage").innerText = "Bravo vous avez gagné!"
+            document.getElementById("playAgain").innerText = "Voulez vous continuer?"
             gameOver();
         } else {
             document.getElementById("message").style.color = "red";
             document.getElementById("message").innerText = "Désolé ce n'est pas le bon nombre!";
             leftTrials = leftTrials - 1
+            document.getElementById("trialsMessage").innerText = "Il vous reste " + leftTrials + " Essais";
+            disableRadioButtons();
             if (leftTrials == 0) {
                 document.getElementById("gameResultMessage").style.color = "red";
-                document.getElementById("gameResultMessage").innerText = "Vous avez perdu!"
+                document.getElementById("gameResultMessage").innerText = "Désolé vous avez perdu!"
+                document.getElementById("playAgain").innerText = "Voulez vous réessayer?"
                 gameOver();
             }
         }
@@ -116,13 +139,15 @@ function clearGivenNumber() {
 }
 
 function gameOver() {
-    document.getElementById("game").style.visibility = "hidden";
-    document.getElementById("gameResult").style.visibility = "visible";
+    document.getElementById("game").style.display = "none";
+    document.getElementById("gameResult").style.display = "block";
 }
 
 function goodBye() {
-    document.getElementById("gameResult").style.visibility = "hidden";
-    document.getElementById("goodBye").style.visibility = "visible";
+    document.getElementById("gameResult").style.display = "none";
+    document.getElementById("goodByeName").innerText = localStorage.getItem('gamerName') + " !";
+    document.getElementById("goodByeScore").innerText = localStorage.getItem('gamerScore');
+    document.getElementById("goodBye").style.display = "block";
 }
 
 function playAgain() {
