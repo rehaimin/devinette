@@ -71,7 +71,6 @@ input {
         font-size: 0.99em;
     }
     form * {
-        padding: 5px;
-        ;
+        height: 40px;
     }
 }
