@@ -24,6 +24,7 @@ input {
     font-family: 'digital-7';
     letter-spacing: 0.07em;
     color: #CCFF00;
+    font-size: 1.05em;
 }
 
 .container {
@@ -63,8 +64,4 @@ input {
 
 .continueBtnsContainer button {
     margin: 20px;
-}
-
-@media screen and (max-width=600px) {
-    font-size: 0.7em;
 }
