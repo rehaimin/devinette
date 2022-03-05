@@ -70,4 +70,7 @@ input {
     * {
         font-size: 0.99em;
     }
+    .gamer {
+        width: 300px;
+    }
 }
