@@ -58,7 +58,6 @@ function mediumLevel() {
     }
     leftTrials = 5;
     levelPoints = 3;
-    console.log(randomNumber);
 }
 
 function difficultLevel() {
@@ -71,7 +70,6 @@ function difficultLevel() {
     }
     leftTrials = 10;
     levelPoints = 5;
-    console.log(randomNumber);
 }
 
 let checkedRadio;
@@ -83,8 +81,6 @@ function isAnyLevelChecked(levelChecked) {
             levelChecked = true;
         }
     }
-
-    console.log(randomNumber);
     if (levelChecked != true) {
         document.getElementById("message").style.color = "red";
         document.getElementById("givenNumber").blur();
@@ -109,7 +105,6 @@ function disableRadioButtons() {
 function verfyGivenNumber() {
     let givenNumber = document.getElementById("givenNumber");
     if (givenNumber.value != "") {
-        console.log(givenNumber.value, randomNumber);
         if (givenNumber.value == randomNumber) {
             localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
             document.getElementById("gameResultMessage").style.color = "green";
