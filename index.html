@@ -32,8 +32,11 @@
                 <input type="radio" name="levels" id="difficult" value="difficult" onchange="difficultLevel();">
                 <label for="difficult">Difficile</label>
             </div>
-            <p id="message">Selectionnez un niveau avant de commencer!</p>
-            <p id="trialsMessage"></p>
+            <div class="messages">
+                <p id="message">Selectionnez un niveau avant de commencer!</p>
+                <p id="pointsMessage"></p>
+                <p id="trialsMessage"></p>
+            </div>
             <form>
                 <input type="number" id="givenNumber" placeholder="nombre" onfocus="isAnyLevelChecked();">
                 <button type="button" onclick="verfyGivenNumber();clearGivenNumber();">Valider</button>

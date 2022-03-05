@@ -40,36 +40,39 @@ let leftTrials;
 let levelPoints;
 
 function easyLevel() {
-    document.getElementById("message").style.color = "#CCFF00";
-    document.getElementById("message").innerText = "Entrez un nombre entier entre 1 et 10";
-    document.getElementById("trialsMessage").innerText = "Vous avez 3 Essais pour deviner";
-    randomNumber = Math.ceil(Math.random() * 10);
     leftTrials = 3;
     levelPoints = 1;
+    document.getElementById("message").style.color = "#CCFF00";
+    document.getElementById("message").innerText = "Entrez un nombre entier entre 1 et 10";
+    document.getElementById("trialsMessage").innerText = "Vous avez " + leftTrials + " Essais pour deviner";
+    document.getElementById("pointsMessage").innerText = "Pour chaque nombre valide vous gagnez " + levelPoints + " point";
+    randomNumber = Math.ceil(Math.random() * 10);
 }
 
 function mediumLevel() {
+    leftTrials = 5;
+    levelPoints = 3;
     document.getElementById("message").style.color = "#CCFF00";
     document.getElementById("message").innerText = "Entrez un nombre entier entre 10 et 100";
-    document.getElementById("trialsMessage").innerText = "Vous avez 5 Essais pour deviner";
+    document.getElementById("trialsMessage").innerText = "Vous avez " + leftTrials + " Essais pour deviner";
+    document.getElementById("pointsMessage").innerText = "Pour chaque nombre valide vous gagnez " + levelPoints + " points";
     randomNumber = Math.ceil(Math.random() * 100);
     if (randomNumber < 10) {
         randomNumber = randomNumber + 10;
     }
-    leftTrials = 5;
-    levelPoints = 3;
 }
 
 function difficultLevel() {
+    leftTrials = 10;
+    levelPoints = 5;
     document.getElementById("message").style.color = "#CCFF00";
     document.getElementById("message").innerText = "Entrez un nombre entier entre 100 et 1000";
-    document.getElementById("trialsMessage").innerText = "Vous avez 10 Essais pour deviner";
+    document.getElementById("trialsMessage").innerText = "Vous avez " + leftTrials + " Essais pour deviner";
+    document.getElementById("pointsMessage").innerText = "Pour chaque nombre valide vous gagnez " + levelPoints + " points";
     randomNumber = Math.ceil(Math.random() * 1000);
     if (randomNumber < 100) {
         randomNumber = randomNumber + 100;
     }
-    leftTrials = 10;
-    levelPoints = 5;
 }
 
 let checkedRadio;
@@ -104,18 +107,23 @@ function disableRadioButtons() {
 
 function verfyGivenNumber() {
     let givenNumber = document.getElementById("givenNumber");
+    let sPoints;
+    let sTrials;
+    (levelPoints > 1) ? sPoints = "s": sPoints = "";
     if (givenNumber.value != "") {
         if (givenNumber.value == randomNumber) {
             localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
             document.getElementById("gameResultMessage").style.color = "green";
-            document.getElementById("gameResultMessage").innerText = "Bravo vous avez gagné!"
+            document.getElementById("gameResultMessage").innerText = "Bravo vous avez gagné " + levelPoints + " point" + sPoints;
             document.getElementById("playAgain").innerText = "Voulez vous continuer?"
             gameOver();
         } else {
             document.getElementById("message").style.color = "red";
             document.getElementById("message").innerText = "Désolé ce n'est pas le bon nombre!";
-            leftTrials = leftTrials - 1
-            document.getElementById("trialsMessage").innerText = "Il vous reste " + leftTrials + " Essais";
+            leftTrials = leftTrials - 1;
+            (leftTrials > 1) ? sTrials = "s": sTrials = "";
+            document.getElementById("pointsMessage").innerText = ""
+            document.getElementById("trialsMessage").innerText = "Il vous reste " + leftTrials + " Essai" + sTrials;
             disableRadioButtons();
             if (leftTrials == 0) {
                 document.getElementById("gameResultMessage").style.color = "red";

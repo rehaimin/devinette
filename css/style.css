@@ -7,16 +7,25 @@ body {
     background-color: black;
 }
 
+.messages {
+    height: 90px;
+}
+
+.messages+form {
+    margin-top: 40px;
+}
+
 button {
     background-color: gray;
 }
 
 input {
     color: black;
+    background-color: lightgray;
 }
 
 #givenNumber {
-    width: 80px;
+    width: 85px;
     text-align: center;
 }
 
@@ -28,9 +37,11 @@ input {
 }
 
 .container {
-    max-width: 1140px;
+    max-width: 600px;
     text-align: center;
+    padding: 20px;
     margin: 50px auto;
+    box-shadow: 0 0 5px rgba(140, 140, 140, 0.25);
 }
 
 .gamer {
@@ -41,9 +52,8 @@ input {
 }
 
 .levels,
-#message,
 #name {
-    margin: 25px 0;
+    margin: 40px 0;
 }
 
 .levels span {
