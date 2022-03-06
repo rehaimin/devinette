@@ -9,10 +9,12 @@ function nameIsAvailable() {
 const nameContainer = document.getElementById("nameContainer");
 const game = document.getElementById("game");
 const gamerNameSpan = document.getElementById("gamerName");
+const nameInput = document.getElementById("name");
 
 function askForNameIfNotAvalable() {
     if (!nameIsAvailable()) {
         nameContainer.style.display = "block";
+        nameInput.focus();
     } else {
         gamerNameSpan.innerText = gamerName;
         game.style.display = "block";
@@ -58,6 +60,7 @@ function easyLevel() {
     trialsMessage.innerText = "Vous avez " + leftTrials + " Essais pour deviner";
     pointsMessage.innerText = "Pour chaque nombre valide vous gagnez " + levelPoints + " point";
     randomNumber = Math.ceil(Math.random() * 10);
+    givenNumberInput.focus();
 }
 
 function mediumLevel() {
@@ -71,6 +74,7 @@ function mediumLevel() {
     if (randomNumber < 10) {
         randomNumber = randomNumber + 10;
     }
+    givenNumberInput.focus();
 }
 
 function difficultLevel() {
@@ -84,6 +88,7 @@ function difficultLevel() {
     if (randomNumber < 100) {
         randomNumber = randomNumber + 100;
     }
+    givenNumberInput.focus();
 }
 
 let checkedRadio;
@@ -140,6 +145,7 @@ function verfyGivenNumber() {
             pointsMessage.innerText = ""
             trialsMessage.innerText = "Il vous reste " + leftTrials + " Essai" + sTrials;
             disableRadioButtons();
+            givenNumberInput.focus();
             if (leftTrials == 0) {
                 gameResultMessage.style.color = "red";
                 gameResultMessage.innerText = "Désolé vous avez perdu!"
