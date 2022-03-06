@@ -136,6 +136,7 @@ function verfyGivenNumber() {
             gameResultMessage.style.color = "green";
             gameResultMessage.innerText = "Bravo vous avez gagné " + levelPoints + " point" + sPoints;
             playAgainMessage.innerText = "Voulez vous continuer?"
+            uncheckRadioButtons();
             gameOver();
         } else {
             mainMessage.style.color = "red";
