@@ -144,6 +144,7 @@ function verfyGivenNumber() {
                 gameResultMessage.style.color = "red";
                 gameResultMessage.innerText = "Désolé vous avez perdu!"
                 playAgainMessage.innerText = "Voulez vous réessayer?"
+                uncheckRadioButtons();
                 gameOver();
             }
         }
