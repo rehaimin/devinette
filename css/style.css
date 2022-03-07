@@ -51,8 +51,8 @@ input {
 
 .gamer {
     display: flex;
-    justify-content: space-between;
-    width: 360px;
+    justify-content: space-around;
+    width: 100%;
     margin: auto;
 }
 
@@ -84,8 +84,5 @@ input {
 @media screen and (max-width: 600px) {
     * {
         font-size: 0.99em;
-    }
-    .gamer {
-        width: 300px;
     }
 }

@@ -23,11 +23,9 @@ function askForNameIfNotAvalable() {
 }
 
 
-const name = document.getElementById("name");
-
 function verfyGivenName() {
-    if (name.value != "") {
-        localStorage.setItem('gamerName', name.value);
+    if (nameInput.value != "") {
+        localStorage.setItem('gamerName', nameInput.value);
         nameContainer.style.display = "none";
         gamerNameSpan.innerText = localStorage.getItem('gamerName');
         game.style.display = "block";
@@ -48,6 +46,8 @@ function checkGamerScore() {
 let randomNumber;
 let leftTrials;
 let levelPoints;
+let minNumber;
+let maxNumber;
 const mainMessage = document.getElementById("mainMessage");
 const trialsMessage = document.getElementById("trialsMessage");
 const pointsMessage = document.getElementById("pointsMessage");
@@ -55,8 +55,10 @@ const pointsMessage = document.getElementById("pointsMessage");
 function easyLevel() {
     leftTrials = 3;
     levelPoints = 1;
+    minNumber = 1;
+    maxNumber = 10;
     mainMessage.style.color = "#CCFF00";
-    mainMessage.innerText = "Entrez un nombre entier entre 1 et 10";
+    mainMessage.innerText = "Entrez un nombre entier entre " + minNumber + " et " + maxNumber;
     trialsMessage.innerText = "Vous avez " + leftTrials + " Essais pour deviner";
     pointsMessage.innerText = "Pour chaque nombre valide vous gagnez " + levelPoints + " point";
     randomNumber = Math.ceil(Math.random() * 10);
@@ -66,8 +68,10 @@ function easyLevel() {
 function mediumLevel() {
     leftTrials = 5;
     levelPoints = 3;
+    minNumber = 10;
+    maxNumber = 100;
     mainMessage.style.color = "#CCFF00";
-    mainMessage.innerText = "Entrez un nombre entier entre 10 et 100";
+    mainMessage.innerText = "Entrez un nombre entier entre " + minNumber + " et " + maxNumber;
     trialsMessage.innerText = "Vous avez " + leftTrials + " Essais pour deviner";
     pointsMessage.innerText = "Pour chaque nombre valide vous gagnez " + levelPoints + " points";
     randomNumber = Math.ceil(Math.random() * 100);
@@ -80,8 +84,10 @@ function mediumLevel() {
 function difficultLevel() {
     leftTrials = 10;
     levelPoints = 5;
+    minNumber = 10;
+    maxNumber = 1000;
     mainMessage.style.color = "#CCFF00";
-    mainMessage.innerText = "Entrez un nombre entier entre 100 et 1000";
+    mainMessage.innerText = "Entrez un nombre entier entre " + minNumber + " et " + maxNumber;
     trialsMessage.innerText = "Vous avez " + leftTrials + " Essais pour deviner";
     pointsMessage.innerText = "Pour chaque nombre valide vous gagnez " + levelPoints + " points";
     randomNumber = Math.ceil(Math.random() * 1000);
@@ -130,7 +136,10 @@ function verfyGivenNumber() {
     let sPoints;
     let sTrials;
     (levelPoints > 1) ? sPoints = "s": sPoints = "";
-    if (givenNumber.value != "") {
+    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
+        mainMessage.style.color = "red";
+        mainMessage.innerText = "Entrez un nombre entier entre " + minNumber + " et " + maxNumber;
+    } else {
         if (givenNumber.value == randomNumber) {
             localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
             gameResultMessage.style.color = "green";
