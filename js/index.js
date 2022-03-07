@@ -139,6 +139,7 @@ function verfyGivenNumber() {
     if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
         mainMessage.style.color = "red";
         mainMessage.innerText = "Entrez un nombre entier entre " + minNumber + " et " + maxNumber;
+        givenNumberInput.focus();
     } else {
         if (givenNumber.value == randomNumber) {
             localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
