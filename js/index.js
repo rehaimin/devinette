@@ -148,6 +148,7 @@ function verfyGivenNumber() {
             trialsMessage.innerText = `Il vous reste ${leftTrials} Essai${sTrials}`;
             disableRadioButtons();
             smallSound.play();
+            document.getElementById('mp3').play();
             givenNumberInput.focus();
             if (leftTrials == 0) {
                 gameResultMessage.style.color = "red";
