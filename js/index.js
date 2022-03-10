@@ -125,7 +125,7 @@ function verfyGivenNumber() {
     let sPoints;
     let sTrials;
     (levelPoints > 1) ? sPoints = "s": sPoints = "";
-    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
+    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber ) {
         mainMessage.style.color = "red";
         mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
         smallSound.play();
@@ -148,7 +148,6 @@ function verfyGivenNumber() {
             trialsMessage.innerText = `Il vous reste ${leftTrials} Essai${sTrials}`;
             disableRadioButtons();
             smallSound.play();
-            document.getElementById('mp3').play();
             givenNumberInput.focus();
             if (leftTrials == 0) {
                 gameResultMessage.style.color = "red";
