@@ -88,6 +88,8 @@ input {
 
 .bi-emoji-smile-fill,
 .bi-emoji-frown {
+    display: block;
+    margin-bottom: 20px;
     font-size: 3em;
 }
 

@@ -131,7 +131,7 @@ function verfyGivenNumber() {
         if (givenNumber.value == randomNumber) {
             localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
             gameResultMessage.style.color = "green";
-            gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"></i><p>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}</p>`;
+            gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"></i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
             playAgainMessage.innerText = "Voulez vous continuer?"
             uncheckRadioButtons();
             gameOver();
@@ -147,7 +147,7 @@ function verfyGivenNumber() {
             givenNumberInput.focus();
             if (leftTrials == 0) {
                 gameResultMessage.style.color = "red";
-                gameResultMessage.innerHTML = `<i class="bi bi-emoji-frown"></i><p>Désolé ${gamerName} vous avez perdu!</p>`;
+                gameResultMessage.innerHTML = `<i class="bi bi-emoji-frown"></i>Désolé ${gamerName} vous avez perdu!`;
                 playAgainMessage.innerText = "Voulez vous réessayer?";
                 uncheckRadioButtons();
                 gameOver();
