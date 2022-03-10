@@ -3,6 +3,8 @@ let successSound = new Audio("../audio/success.mp3");
 successSound.volume = 0.3;
 let failSound = new Audio("../audio/fail.mp3");
 failSound.volume = 0.3;
+let smallSound = new Audio("../audio/small-hit.mp3");
+smallSound.volume = 0.2;
 
 function nameIsAvailable() {
     gamerName = localStorage.getItem('gamerName');
@@ -126,6 +128,7 @@ function verfyGivenNumber() {
     if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
         mainMessage.style.color = "red";
         mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
+        smallSound.play();
         givenNumberInput.focus();
     } else {
         if (givenNumber.value == randomNumber) {
@@ -144,6 +147,7 @@ function verfyGivenNumber() {
             pointsMessage.innerText = ""
             trialsMessage.innerText = `Il vous reste ${leftTrials} Essai${sTrials}`;
             disableRadioButtons();
+            smallSound.play();
             givenNumberInput.focus();
             if (leftTrials == 0) {
                 gameResultMessage.style.color = "red";
