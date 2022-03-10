@@ -3,6 +3,11 @@
     src: url('../fonts/DS-DIGI.TTF');
 }
 
+@font-face {
+    font-family: 'bootstrap-icons';
+    src: url('../fonts/bootstrap-icons.woff'), url('../fonts/bootstrap-icons.woff2');
+}
+
 body {
     background-color: black;
 }
@@ -79,6 +84,11 @@ input {
 
 .continueBtnsContainer button {
     margin: 20px;
+}
+
+.bi-emoji-smile-fill,
+.bi-emoji-frown {
+    font-size: 3em;
 }
 
 @media screen and (max-width: 600px) {
