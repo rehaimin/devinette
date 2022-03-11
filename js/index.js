@@ -93,16 +93,16 @@ let checkedRadio;
 const radioButtons = document.getElementsByName("levels");
 const givenNumberInput = document.getElementById("givenNumber");
 
-function isAnyLevelChecked(levelChecked) {
+function isAnyLevelChecked() {
     for (let i = 0; i < 3; i++) {
         let radioButton = radioButtons[i];
         if (radioButton.checked) {
-            levelChecked = true;
+            return true;
+        } else {
+            mainMessage.style.color = "red";
+            givenNumberInput.blur();
+            return false;
         }
-    }
-    if (levelChecked != true) {
-        mainMessage.style.color = "red";
-        givenNumberInput.blur();
     }
 }
 
@@ -124,39 +124,41 @@ const gameResultMessage = document.getElementById("gameResultMessage");
 const playAgainMessage = document.getElementById("playAgain");
 
 function verfyGivenNumber() {
-    let givenNumber = givenNumberInput;
-    (levelPoints > 1) ? sPoints = "s": sPoints = "";
-    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
-        mainMessage.style.color = "red";
-        mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
-        smallSound.play();
-        givenNumberInput.focus();
-    } else {
-        if (givenNumber.value == randomNumber) {
-            localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
-            gameResultMessage.style.color = "green";
-            gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"> </i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
-            playAgainMessage.innerText = "Voulez vous continuer?"
-            uncheckRadioButtons();
-            gameOver();
-            successSound.play();
-        } else {
+    if (isAnyLevelChecked()) {
+        let givenNumber = givenNumberInput;
+        (levelPoints > 1) ? sPoints = "s": sPoints = "";
+        if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
             mainMessage.style.color = "red";
-            mainMessage.innerText = "Désolé ce n'est pas le bon nombre!";
-            leftTrials = leftTrials - 1;
-            (leftTrials > 1) ? sTrials = "s": sTrials = "";
-            pointsMessage.innerText = ""
-            trialsMessage.innerText = `Il vous reste ${leftTrials} Essai${sTrials}`;
-            disableRadioButtons();
+            mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
             smallSound.play();
             givenNumberInput.focus();
-            if (leftTrials == 0) {
-                gameResultMessage.style.color = "red";
-                gameResultMessage.innerHTML = `<i class="bi bi-emoji-frown"></i>Désolé ${gamerName} vous avez perdu!`;
-                playAgainMessage.innerText = "Voulez vous réessayer?";
+        } else {
+            if (givenNumber.value == randomNumber) {
+                localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
+                gameResultMessage.style.color = "green";
+                gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"> </i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
+                playAgainMessage.innerText = "Voulez vous continuer?"
                 uncheckRadioButtons();
                 gameOver();
-                failSound.play();
+                successSound.play();
+            } else {
+                mainMessage.style.color = "red";
+                mainMessage.innerText = "Désolé ce n'est pas le bon nombre!";
+                leftTrials = leftTrials - 1;
+                (leftTrials > 1) ? sTrials = "s": sTrials = "";
+                pointsMessage.innerText = ""
+                trialsMessage.innerText = `Il vous reste ${leftTrials} Essai${sTrials}`;
+                disableRadioButtons();
+                smallSound.play();
+                givenNumberInput.focus();
+                if (leftTrials == 0) {
+                    gameResultMessage.style.color = "red";
+                    gameResultMessage.innerHTML = `<i class="bi bi-emoji-frown"></i>Désolé ${gamerName} vous avez perdu!`;
+                    playAgainMessage.innerText = "Voulez vous réessayer?";
+                    uncheckRadioButtons();
+                    gameOver();
+                    failSound.play();
+                }
             }
         }
     }
