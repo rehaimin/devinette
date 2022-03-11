@@ -3,7 +3,7 @@ let successSound = new Audio("../audio/success.mp3");
 successSound.volume = 0.3;
 let failSound = new Audio("../audio/fail.mp3");
 failSound.volume = 0.3;
-let smallSound = new Audio("../audio/small-hit.mp3");
+let smallSound = new Audio('audio/small-hit.mp3');
 smallSound.volume = 0.2;
 
 function nameIsAvailable() {
