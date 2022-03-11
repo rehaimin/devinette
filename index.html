@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="askForNameIfNotAvalable();checkGamerScore();"> 
-<div class="container">
+<body onload="askForNameIfNotAvalable();checkGamerScore();">
+    <div class="container">
         <div id="nameContainer">
             <p>Entrez votre nom pour jouer !</p>
             <form>
@@ -39,7 +39,7 @@
                 <p id="trialsMessage"></p>
             </div>
             <form>
-                <input type="number" id="givenNumber" placeholder="nombre" onfocus="isAnyLevelChecked();">
+                <input type="number" id="givenNumber" placeholder="nombre">
                 <button type="button" onclick="verfyGivenNumber();clearGivenNumber();">Valider</button>
             </form>
         </div>
