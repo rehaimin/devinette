@@ -101,6 +101,7 @@ function isAnyLevelChecked() {
         } else {
             mainMessage.style.color = "red";
             givenNumberInput.blur();
+            smallSound.play();
             return false;
         }
     }
