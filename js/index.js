@@ -54,15 +54,18 @@ let leftTrials;
 let levelPoints;
 let minNumber;
 let maxNumber;
+let sPoints;
+let sTrials;
 const mainMessage = document.getElementById("mainMessage");
 const trialsMessage = document.getElementById("trialsMessage");
 const pointsMessage = document.getElementById("pointsMessage");
 
 function selectLevel(minNum, maxNum, points, trials) {
+    (levelPoints > 1) ? sPoints = "s": sPoints = "";
     mainMessage.style.color = "#CCFF00";
-    mainMessage.innerText = "Entrez un nombre entier entre " + minNum + " et " + maxNum;
-    trialsMessage.innerText = "Vous avez " + leftTrials + " Essais pour deviner";
-    pointsMessage.innerText = "Pour chaque nombre valide vous gagnez " + points + " points";
+    mainMessage.innerText = `Entrez un nombre entier entre ${minNum} et ${maxNum}`;
+    trialsMessage.innerText = `Vous avez ${trials} Essais pour deviner`;
+    pointsMessage.innerText = `Pour chaque nombre valide vous gagnez ${points} point${sPoints}`;
     randomNumber = Math.ceil(Math.random() * maxNum);
     if (randomNumber < minNum) {
         randomNumber = randomNumber + minNum;
@@ -122,8 +125,6 @@ const playAgainMessage = document.getElementById("playAgain");
 
 function verfyGivenNumber() {
     let givenNumber = givenNumberInput;
-    let sPoints;
-    let sTrials;
     (levelPoints > 1) ? sPoints = "s": sPoints = "";
     if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
         mainMessage.style.color = "red";
@@ -134,7 +135,7 @@ function verfyGivenNumber() {
         if (givenNumber.value == randomNumber) {
             localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
             gameResultMessage.style.color = "green";
-            gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"></i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
+            gameResultMessage.innerHTML = `< i class = "bi bi-emoji-smile-fill" > < /i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
             playAgainMessage.innerText = "Voulez vous continuer?"
             uncheckRadioButtons();
             gameOver();
