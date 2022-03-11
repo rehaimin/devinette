@@ -135,7 +135,7 @@ function verfyGivenNumber() {
         if (givenNumber.value == randomNumber) {
             localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
             gameResultMessage.style.color = "green";
-            gameResultMessage.innerHTML = `< i class = "bi bi-emoji-smile-fill" > < /i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
+            gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"> </i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
             playAgainMessage.innerText = "Voulez vous continuer?"
             uncheckRadioButtons();
             gameOver();
