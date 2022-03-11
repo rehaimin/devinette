@@ -3,7 +3,7 @@ let successSound = new Audio("../audio/success.mp3");
 successSound.volume = 0.3;
 let failSound = new Audio("../audio/fail.mp3");
 failSound.volume = 0.3;
-let smallSound = new Audio("../audio/small-hit.mp3");
+let smallSound = new Audio('audio/small-hit.mp3');
 smallSound.volume = 0.2;
 
 function nameIsAvailable() {
@@ -126,7 +126,7 @@ const playAgainMessage = document.getElementById("playAgain");
 function verfyGivenNumber() {
     let givenNumber = givenNumberInput;
     (levelPoints > 1) ? sPoints = "s": sPoints = "";
-    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
+    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber ) {
         mainMessage.style.color = "red";
         mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
         smallSound.play();
