@@ -125,41 +125,39 @@ const gameResultMessage = document.getElementById("gameResultMessage");
 const playAgainMessage = document.getElementById("playAgain");
 
 function verfyGivenNumber() {
-    if (isAnyLevelChecked()) {
-        let givenNumber = givenNumberInput;
-        (levelPoints > 1) ? sPoints = "s": sPoints = "";
-        if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
+    let givenNumber = givenNumberInput;
+    (levelPoints > 1) ? sPoints = "s": sPoints = "";
+    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
+        mainMessage.style.color = "red";
+        mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
+        smallSound.play();
+        givenNumberInput.focus();
+    } else {
+        if (givenNumber.value == randomNumber) {
+            localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
+            gameResultMessage.style.color = "green";
+            gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"> </i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
+            playAgainMessage.innerText = "Voulez vous continuer?"
+            uncheckRadioButtons();
+            gameOver();
+            successSound.play();
+        } else {
             mainMessage.style.color = "red";
-            mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
+            mainMessage.innerText = "Désolé ce n'est pas le bon nombre!";
+            leftTrials = leftTrials - 1;
+            (leftTrials > 1) ? sTrials = "s": sTrials = "";
+            pointsMessage.innerText = ""
+            trialsMessage.innerText = `Il vous reste ${leftTrials} Essai${sTrials}`;
+            disableRadioButtons();
             smallSound.play();
             givenNumberInput.focus();
-        } else {
-            if (givenNumber.value == randomNumber) {
-                localStorage.setItem('gamerScore', parseInt(localStorage.getItem('gamerScore')) + levelPoints)
-                gameResultMessage.style.color = "green";
-                gameResultMessage.innerHTML = `<i class="bi bi-emoji-smile-fill"> </i>Bravo ${gamerName} vous avez gagné ${levelPoints} point${sPoints}`;
-                playAgainMessage.innerText = "Voulez vous continuer?"
+            if (leftTrials == 0) {
+                gameResultMessage.style.color = "red";
+                gameResultMessage.innerHTML = `<i class="bi bi-emoji-frown"></i>Désolé ${gamerName} vous avez perdu!`;
+                playAgainMessage.innerText = "Voulez vous réessayer?";
                 uncheckRadioButtons();
                 gameOver();
-                successSound.play();
-            } else {
-                mainMessage.style.color = "red";
-                mainMessage.innerText = "Désolé ce n'est pas le bon nombre!";
-                leftTrials = leftTrials - 1;
-                (leftTrials > 1) ? sTrials = "s": sTrials = "";
-                pointsMessage.innerText = ""
-                trialsMessage.innerText = `Il vous reste ${leftTrials} Essai${sTrials}`;
-                disableRadioButtons();
-                smallSound.play();
-                givenNumberInput.focus();
-                if (leftTrials == 0) {
-                    gameResultMessage.style.color = "red";
-                    gameResultMessage.innerHTML = `<i class="bi bi-emoji-frown"></i>Désolé ${gamerName} vous avez perdu!`;
-                    playAgainMessage.innerText = "Voulez vous réessayer?";
-                    uncheckRadioButtons();
-                    gameOver();
-                    failSound.play();
-                }
+                failSound.play();
             }
         }
     }
