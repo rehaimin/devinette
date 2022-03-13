@@ -127,7 +127,7 @@ const playAgainMessage = document.getElementById("playAgain");
 function verfyGivenNumber() {
     let givenNumber = givenNumberInput;
     (levelPoints > 1) ? sPoints = "s": sPoints = "";
-    if (givenNumber.value == "" || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
+    if (givenNumber.value == ""|| !givenNumber.value.isInteger() || givenNumber.value < minNumber || givenNumber.value > maxNumber) {
         mainMessage.style.color = "red";
         mainMessage.innerText = `Entrez un nombre entier entre ${minNumber} et ${maxNumber}`;
         smallSound.play();
